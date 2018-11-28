@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>player</title>
+</head>
+<body>
+
+	<label id="name" style="font-size:40px">0</label>
+	<br/>
+
+
+	<video id="player" width="75%" height="75%" controls>
+        <source id="v1" src="">
+    </video>
+
+	<script language="javascript" >
+		var url=location.search;
+		var Request = new Object();
+		if(url.indexOf("?")!=-1)
+		{
+		　　var str = url.substr(1)　//去掉?号
+		　　strs = str.split("&");
+		　　for(var i=0;i<strs.length;i++)
+		　　{
+		 　　　 Request[strs[i ].split("=")[0]]=unescape(strs[i].split("=")[1]);
+		　　}
+		}
+		document.getElementById("v1").src=Request["path"];
+		document.getElementById("player").load();
+
+		// show file name
+		var obj=Request["path"].lastIndexOf("/");
+		document.title = Request["path"].substr(obj + 1);
+		document.getElementById("name").innerHTML = Request["path"].substr(obj + 1);
+	</script>
+
+</body>
+</html>
